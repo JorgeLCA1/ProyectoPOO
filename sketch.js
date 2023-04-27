@@ -39,7 +39,7 @@ function mousePressed() { // Se ejecuta cuando se presiona el mouse
       figuras.splice(i, 1); // Elimina la figura de el arreglo
     }
   }
-}
+}}
 
 class Figura { // Clase base para todas las figuras
   constructor() {
