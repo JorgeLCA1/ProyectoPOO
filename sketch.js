@@ -49,8 +49,8 @@ class Figura { // Clase base para todas las figuras
   }
   
   mover() { // Método para mover la figura
-    this.x += random(-2, 2); // Mueve la figura en x aleatoriamente entre -2 y 2
-    this.y += random(-2, 2);  // Mueve la figura en y aleatoriamente entre -2 y 2
+    this.x += random(-2, 5); // Mueve la figura en x aleatoriamente entre -2 y 2
+    this.y += random(-2, 5);  // Mueve la figura en y aleatoriamente entre -2 y 2
   }
   
   pop() { // Método para imprimir un mensaje en la consola cuando se elimina una figura
