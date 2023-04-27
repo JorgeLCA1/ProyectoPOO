@@ -1,110 +1,111 @@
-let figuras = [];
+let figuras = []; //Declaración de una matriz para almacenar las figuras
 
 function setup() {
   createCanvas(600, 600);
-  for (let i = 0; i < 20; i++) {
-    let tipoFigura = floor(random(3));
+  for (let i = 0; i < 20; i++) { //Crea 20 figuras aleatorias
+    let tipoFigura = floor(random(3)); // Genera un número aleatorio entre 0 y 2 para elegir qué tipo de figura crear.
     let figura;
-    if (tipoFigura === 0) {
-      figura = new Circulo(random(15, 30));
-    } else if (tipoFigura === 1) {
-      figura = new Rectangulo(random(15, 30), random(15, 30));
-    } else {
-      figura = new Triangulo(random(15, 30));
+    if (tipoFigura === 0) { // Si el número aleatorio es 0, crea un círculo
+      figura = new Circulo(random(15, 30)); // Crea un círculo con radio aleatorio entre 15 y 30
+    } else if (tipoFigura === 1) { // Si el número aleatorio es 1, crea un rectángulo
+      figura = new Rectangulo(random(15, 30), random(15, 30)); // Crea un rectángulo con ancho y alto aleatorios entre 15 y 30
+    } else { // Si el número aleatorio es 2, crea un triángulo
+      figura = new Triangulo(random(15, 30)); // Crea un triángulo con radio aleatorio entre 15 y 30
     }
-    figuras.push(figura);
+    figuras.push(figura); // Agrega la figura creada a la matriz de figuras
   }
 }
 
-function draw() {
+function draw() {  
   background(220);
-  for (let i = 0; i < figuras.length; i++) {
+  for (let i = 0; i < figuras.length; i++) { 
     figuras[i].mostrar();
     figuras[i].mover();
   }
 }
 
-function mousePressed() {
-  for (let i = figuras.length - 1; i >= 0; i--) {
-    if (figuras[i].contiene(mouseX, mouseY)) {
-      figuras[i].pop();
-      figuras.splice(i, 1);
+function mousePressed() { // Se ejecuta cuando se presiona el mouse 
+  for (let i = figuras.length - 1; i >= 0; i--) { // Recorre la matriz de figuras de atrás hacia adelante
+    if (figuras[i].contienem(mouseX, mouseY)) { // Si el mouse está sobre la figura entonces:
+      figuras[i].pop(); // Imprime un mensaje en la consola (para saber qué figura se ha eliminado)
+      figuras.splice(i, 1); // Elimina la figura de la matriz
     }
   }
 }
 
-class Figura {
+class Figura { // Clase base para todas las figuras
   constructor() {
-    this.x = random(width);
-    this.y = random(height);
+    this.x = random(width); // Posición en x aleatoria
+    this.y = random(height); // Posición en y aleatoria
   }
   
-  contiene(px, py) {
-    return false;
+  contienem(px, py) { // Método para saber si el mouse está sobre la figura
+    return false; 
   }
   
-  mostrar() {
-    stroke(0);
-    strokeWeight(2);
+  mostrar() { // Método para mostrar la figura
+    stroke(255, 153, 153); // Color de la línea
+    strokeWeight(3); // Grosor de la línea
   }
   
-  mover() {
-    this.x += random(-1, 1);
-    this.y += random(-1, 1);
+  mover() { // Método para mover la figura
+    this.x += random(-2, 2); // Mueve la figura en x aleatoriamente entre -2 y 2
+    this.y += random(-2, 2);  // Mueve la figura en y aleatoriamente entre -2 y 2
   }
   
-  pop() {
+  pop() { // Método para imprimir un mensaje en la consola cuando se elimina una figura
     console.log("¡Se ha eliminado una figura!");
   }
 }
 
-class Circulo extends Figura {
-  constructor(r) {
-    super();
-    this.r = r;
-    this.color = color(random(255), random(255), random(255));
+class Circulo extends Figura { // Clase para crear círculos que hereda de la clase Figura
+  constructor(r) { // El constructor recibe el radio del círculo
+    super();  
+    this.r = r; 
+    this.color = color(random(255), random(255), random(255)); 
   }
   
-  contiene(px, py) {
-    let d = dist(px, py, this.x, this.y);
-    if (d < this.r) {
-      return true;
-    } else {
+  contienem(px, py) { // Método para saber si el mouse está sobre el círculo
+    let d = dist(px, py, this.x, this.y); // Calcula la distancia entre el mouse y el centro del círculo
+    if (d < this.r) { // Si la distancia es menor al radio, entonces el mouse está sobre el círculo
+      return true;  
+    } else { // Si la distancia es mayor al radio, entonces el mouse no está sobre el círculo
       return false;
     }
   }
   
-  mostrar() {
-    super.mostrar();
-    fill(this.color);
-    ellipse(this.x, this.y, this.r*2);
+  mostrar() { // Método para mostrar el círculo
+    super.mostrar(); 
+    fill(this.color); 
+    ellipse(this.x, this.y, this.r*2); // Dibuja el círculo
   }
   
-  pop() {
+  pop() { // Método para imprimir un mensaje en la consola cuando se elimina un círculo
     console.log("¡Se ha eliminado un círculo!");
   }
 }
 
-class Rectangulo extends Figura {
-  constructor(w, h) {
+class Rectangulo extends Figura { // Clase para crear rectángulos que hereda de la clase Figura
+  constructor(w, h) { // El constructor recibe el ancho y alto del rectángulo
     super();
     this.w = w;
     this.h = h;
     this.color = color(random(255), random(255), random(255));
   }
   
-  contiene(px, py) {
+  contienem(px, py) { // Método para saber si el mouse está sobre el rectángulo
     if (px > this.x - this.w/2 && px < this.x + this.w/2 && py > this.y - this.h/2 && py < this.y + this.h/2) {
+      // Si el mouse está dentro del rectángulo, entonces: 
       return true;
     } else {
       return false;
     }
   }
   
-  mostrar() {
-    super.mostrar();
-    rectMode(CENTER);
-    rect(this.x, this.y, this.w, this.h);
+  mostrar() { // Método para mostrar el rectángulo
+    super.mostrar(); 
+    rectMode(CENTER); 
+    rect(this.x, this.y, this.w, this.h); 
         fill(this.color);
 
   }
@@ -114,7 +115,7 @@ class Rectangulo extends Figura {
   }
 }
 
-class Triangulo extends Figura {
+class Triangulo extends Figura { // Clase para crear triángulos que hereda de la clase Figura
   constructor(r) {
     super();
     this.r = r;
@@ -122,9 +123,9 @@ class Triangulo extends Figura {
 
   }
   
-  contiene(px, py) {
-    let d = dist(px, py, this.x, this.y);
-    if (d < this.r) {
+  contienem(px, py) { // Método para saber si el mouse está sobre el triángulo
+    let d = dist(px, py, this.x, this.y); // Calcula la distancia entre el mouse y el centro del triángulo
+    if (d < this.r) { // Si la distancia es menor al radio, entonces el mouse está sobre el triángulo
       return true;
     } else {
       return false;
@@ -133,7 +134,7 @@ class Triangulo extends Figura {
   
   mostrar() {
     super.mostrar();
-    triangle(this.x, this.y - this.r, this.x - this.r, this.y + this.r, this.x + this.r, this.y + this.r);
+    triangle(this.x, this.y - this.r, this.x - this.r, this.y + this.r, this.x + this.r, this.y + this.r); 
             fill(this.color);
 
   }
@@ -142,3 +143,4 @@ class Triangulo extends Figura {
     console.log("¡Se ha eliminado un triángulo");
   }
 }
+
