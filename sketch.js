@@ -62,7 +62,7 @@ class Figura { // Clase base para todas las figuras
   mover() { // Método para mover la figura
    
       this.x += random(-3, 3); // Mueve la figura en x aleatoriamente entre -2 y 2
-      this.y += random(-3, 3);  // Mueve la figura en y aleatoriamente entre -2 y 2
+     
     
     
   }
