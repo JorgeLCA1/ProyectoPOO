@@ -6,11 +6,11 @@ function setup() {
     let tipoFigura = floor(random(3)); // Genera un número aleatorio entre 0 y 2 para elegir qué tipo de figura crear.
     let figura;
     if (tipoFigura === 0) { // Si el número aleatorio es 0, crea un círculo
-      figura = new Circulo(random(20, 40)); // Crea un círculo con radio aleatorio entre 15 y 30
+      figura = new Circulo(random(30, 60)); // Crea un círculo con radio aleatorio entre 15 y 30
     } else if (tipoFigura === 1) { // Si el número aleatorio es 1, crea un rectángulo
-      figura = new Rectangulo(random(20, 40), random(20, 40)); // Crea un rectángulo con ancho y alto aleatorios entre 15 y 30
+      figura = new Rectangulo(random(30, 60), random(20, 40)); // Crea un rectángulo con ancho y alto aleatorios entre 15 y 30
     } else { // Si el número aleatorio es 2, crea un triángulo
-      figura = new Triangulo(random(20, 40)); // Crea un triángulo con radio aleatorio entre 15 y 30
+      figura = new Triangulo(random(30, 60)); // Crea un triángulo con radio aleatorio entre 15 y 30
     }
     figuras.push(figura); // Agrega la figura creada a arreglo de figuras
     
