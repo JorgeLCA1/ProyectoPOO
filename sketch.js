@@ -20,32 +20,26 @@ function setup() {
 function draw() {  
   background(220);
   for (let i = 0; i < figuras.length; i++) {
-    if (figuras[i].cae === true) {
-      figuras[i].y += 5; // Incrementar la posición en y para que caiga 
+    figuras[i].y += 5; // Incrementar la posición en y para que caiga 
     figuras[i].mostrar();
     figuras[i].mover();
-  }
-}}
+  }}
 
 function mousePressed() { // Se ejecuta cuando se presiona el mouse 
   for (let i = figuras.length - 1; i >= 0; i--) { // Recorre el arreglo de figuras de atrás hacia adelante
     if (figuras[i].contienem(mouseX, mouseY)) { // Si el mouse está sobre la figura entonces:
-      if (figuras[i].cae === true) { // Verificar si la figura está cayendo
-        figuras.splice(i, 1);
-      } else {
-        figuras[i].pop();
-        figuras[i].cae = true; // Establecer que la figura está cayendo
       figuras[i].pop(); // Imprime un mensaje en la consola (para saber qué figura se ha eliminado)
       figuras.splice(i, 1); // Elimina la figura de el arreglo
+    
     }
   }
-}}
+}
 
 class Figura { // Clase base para todas las figuras
   constructor() {
     this.x = random(width); // Posición en x aleatoria
     this.y = random(height); // Posición en y aleatoria
-    this.cae = false; // Agregar propiedad "cae" para indicar si la figura está cayendo o no
+   
   }
   
   contienem(px, py) { // Método para saber si el mouse está sobre la figura
@@ -58,10 +52,10 @@ class Figura { // Clase base para todas las figuras
   }
   
   mover() { // Método para mover la figura
-    if (this.cae === false){
+   
       this.x += random(-3, 3); // Mueve la figura en x aleatoriamente entre -2 y 2
       this.y += random(-3, 3);  // Mueve la figura en y aleatoriamente entre -2 y 2
-    }
+    
     
   }
   
