@@ -18,7 +18,7 @@ function setup() {
 }
 
 function draw() {  
-  background(198, 95, 72);
+  background(229, 125, 125);
   for (let i = 0; i < figuras.length; i++) {
     
     figuras[i].mostrar();
@@ -74,7 +74,7 @@ class Circulo extends Figura { // Clase para crear círculos que hereda de la cl
   constructor(r) { // El constructor recibe el radio del círculo
     super();  
     this.r = r; 
-    this.color = color(205, 92, 92); 
+    this.color = color(146, 72, 198); 
   }
   
   contienem(px, py) { // Método para saber si el mouse está sobre el círculo
@@ -102,7 +102,7 @@ class Rectangulo extends Figura { // Clase para crear rectángulos que hereda de
     super();
     this.w = w;
     this.h = h;
-    this.color = color(202, 255, 51);
+    this.color = color(103, 198, 72);
   }
   
   contienem(px, py) { // Método para saber si el mouse está sobre el rectángulo
