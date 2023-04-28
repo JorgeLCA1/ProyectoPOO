@@ -30,13 +30,11 @@ function mouseClicked() { // Se ejecuta cuando se presiona el mouse
     if (figuras[i].contienem(mouseX, mouseY)) {
        // Si el mouse está sobre la figura entonces:
        
-       figuras[i].y+= 15; // Incrementar la posición en y para que caiga
+       figuras[i].y+= 40; // Incrementar la posición en y para que caiga
       if (figuras[i].y > height) { // Si la figura sale de la pantalla
         figuras[i].pop(); // Imprime un mensaje en la consola (para saber qué figura se ha eliminado)
         figuras.splice(i, 1); // Elimina la figura de el arreglo
 
-       //*figuras[i].pop(); // Imprime un mensaje en la consola (para saber qué figura se ha eliminado)
-      //*figuras.splice(i, 1); // Elimina la figura de el arreglo
     
     }
   }
@@ -61,7 +59,7 @@ class Figura { // Clase base para todas las figuras
   
   mover() { // Método para mover la figura
    
-      this.x += random(-6, 6); // Mueve la figura en x aleatoriamente entre -2 y 2
+      this.x += random(-10, 10); // Mueve la figura en x aleatoriamente entre -2 y 2
      
     
     
