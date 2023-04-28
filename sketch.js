@@ -20,14 +20,15 @@ function setup() {
 
 function draw() {  
   background(229, 125, 125);
-  textSize(32);
-  textAlign(CENTER, CENTER);
-  text("¡Da click en las figuras para eliminarlas!", width/2, height/2);
   for (let i = 0; i < figuras.length; i++) {
     
     figuras[i].mostrar();
     figuras[i].mover();
-  }}
+  }
+  textSize(32);
+  textAlign(CENTER, CENTER);
+  text("¡Da click en las figuras para eliminarlas!", width/2, height/2);
+}
 
 function mouseClicked() { // Se ejecuta cuando se presiona el mouse 
   for (let i = figuras.length - 1; i >= 0; i--) { // Recorre el arreglo de figuras de atrás hacia adelante
