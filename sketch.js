@@ -26,7 +26,7 @@ function draw() {
     figuras[i].mover();
   }
   textSize(32);
-  textAlign(CENTER, CENTER);
+  textAlign(TOP, CENTER);
   text("¡Da click en las figuras para eliminarlas!", width/2, height/2);
 }
 
@@ -98,7 +98,9 @@ class Circulo extends Figura { // Clase para crear círculos que hereda de la cl
   }
   
   pop() { // Método para imprimir un mensaje en la consola cuando se elimina un círculo
-    console.log("¡Se ha eliminado un círculo!");
+    textSize(32);
+  textAlign(TOP, CENTER);
+  text("!Se ha eliminado un circulo!", width/2, height/2);
   }
 }
 
