@@ -26,7 +26,7 @@ function draw() {
     figuras[i].mover();
   }
   textSize(32);
-  textAlign(TOP);
+  textAlign(CENTER,CENTER);
   text("¡Da click en las figuras para eliminarlas!", width/2, height/2);
 }
 
