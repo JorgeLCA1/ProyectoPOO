@@ -18,7 +18,7 @@ function setup() {
 }
 
 function draw() {  
-  background(220);
+  background(198, 95, 72);
   for (let i = 0; i < figuras.length; i++) {
     
     figuras[i].mostrar();
