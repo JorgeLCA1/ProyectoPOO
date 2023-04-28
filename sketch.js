@@ -1,4 +1,4 @@
-let figuras = []; //Declaración de una matriz para almacenar las figuras
+let figuras = []; //Declaración de un arreglo para almacenar las figuras
 
 function setup() {
   createCanvas(600, 600);
@@ -6,37 +6,46 @@ function setup() {
     let tipoFigura = floor(random(3)); // Genera un número aleatorio entre 0 y 2 para elegir qué tipo de figura crear.
     let figura;
     if (tipoFigura === 0) { // Si el número aleatorio es 0, crea un círculo
-      figura = new Circulo(random(15, 30)); // Crea un círculo con radio aleatorio entre 15 y 30
+      figura = new Circulo(random(20, 40)); // Crea un círculo con radio aleatorio entre 15 y 30
     } else if (tipoFigura === 1) { // Si el número aleatorio es 1, crea un rectángulo
-      figura = new Rectangulo(random(15, 30), random(15, 30)); // Crea un rectángulo con ancho y alto aleatorios entre 15 y 30
+      figura = new Rectangulo(random(20, 40), random(20, 40)); // Crea un rectángulo con ancho y alto aleatorios entre 15 y 30
     } else { // Si el número aleatorio es 2, crea un triángulo
-      figura = new Triangulo(random(15, 30)); // Crea un triángulo con radio aleatorio entre 15 y 30
+      figura = new Triangulo(random(20, 40)); // Crea un triángulo con radio aleatorio entre 15 y 30
     }
-    figuras.push(figura); // Agrega la figura creada a la matriz de figuras
+    figuras.push(figura); // Agrega la figura creada a arreglo de figuras
+    
   }
 }
 
 function draw() {  
   background(220);
-  for (let i = 0; i < figuras.length; i++) { 
+  for (let i = 0; i < figuras.length; i++) {
+    if (figuras[i].cae === true) {
+      figuras[i].y += 5; // Incrementar la posición en y para que caiga 
     figuras[i].mostrar();
     figuras[i].mover();
   }
-}
+}}
 
 function mousePressed() { // Se ejecuta cuando se presiona el mouse 
-  for (let i = figuras.length - 1; i >= 0; i--) { // Recorre la matriz de figuras de atrás hacia adelante
+  for (let i = figuras.length - 1; i >= 0; i--) { // Recorre el arreglo de figuras de atrás hacia adelante
     if (figuras[i].contienem(mouseX, mouseY)) { // Si el mouse está sobre la figura entonces:
+      if (figuras[i].cae === true) { // Verificar si la figura está cayendo
+        figuras.splice(i, 1);
+      } else {
+        figuras[i].pop();
+        figuras[i].cae = true; // Establecer que la figura está cayendo
       figuras[i].pop(); // Imprime un mensaje en la consola (para saber qué figura se ha eliminado)
-      figuras.splice(i, 1); // Elimina la figura de la matriz
+      figuras.splice(i, 1); // Elimina la figura de el arreglo
     }
   }
-}
+}}
 
 class Figura { // Clase base para todas las figuras
   constructor() {
     this.x = random(width); // Posición en x aleatoria
     this.y = random(height); // Posición en y aleatoria
+    this.cae = false; // Agregar propiedad "cae" para indicar si la figura está cayendo o no
   }
   
   contienem(px, py) { // Método para saber si el mouse está sobre la figura
@@ -44,13 +53,16 @@ class Figura { // Clase base para todas las figuras
   }
   
   mostrar() { // Método para mostrar la figura
-    stroke(255, 153, 153); // Color de la línea
+    stroke(0); // Color de la línea
     strokeWeight(3); // Grosor de la línea
   }
   
   mover() { // Método para mover la figura
-    this.x += random(-3, 3); // Mueve la figura en x aleatoriamente entre -2 y 2
-    this.y += random(-3, 3);  // Mueve la figura en y aleatoriamente entre -2 y 2
+    if (this.cae === false){
+      this.x += random(-3, 3); // Mueve la figura en x aleatoriamente entre -2 y 2
+      this.y += random(-3, 3);  // Mueve la figura en y aleatoriamente entre -2 y 2
+    }
+    
   }
   
   pop() { // Método para imprimir un mensaje en la consola cuando se elimina una figura
@@ -62,7 +74,7 @@ class Circulo extends Figura { // Clase para crear círculos que hereda de la cl
   constructor(r) { // El constructor recibe el radio del círculo
     super();  
     this.r = r; 
-    this.color = color(random(255), random(255), random(255)); 
+    this.color = color(205, 92, 92); 
   }
   
   contienem(px, py) { // Método para saber si el mouse está sobre el círculo
@@ -90,7 +102,7 @@ class Rectangulo extends Figura { // Clase para crear rectángulos que hereda de
     super();
     this.w = w;
     this.h = h;
-    this.color = color(random(255), random(255), random(255));
+    this.color = color(202, 255, 51);
   }
   
   contienem(px, py) { // Método para saber si el mouse está sobre el rectángulo
@@ -119,7 +131,7 @@ class Triangulo extends Figura { // Clase para crear triángulos que hereda de l
   constructor(r) {
     super();
     this.r = r;
-        this.color = color(random(255), random(255), random(255));
+        this.color = color(51, 94, 255);
 
   }
   
