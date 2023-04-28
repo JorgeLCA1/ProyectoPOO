@@ -2,6 +2,9 @@ let figuras = []; //Declaración de un arreglo para almacenar las figuras
 
 function setup() {
   createCanvas(900, 600);
+  textSize(32);
+  textAlign(CENTER, CENTER);
+  text("¡Da click en las figuras para eliminarlas!", width/2, height/2);
   for (let i = 0; i < 20; i++) { //Crea 20 figuras aleatorias
     let tipoFigura = floor(random(3)); // Genera un número aleatorio entre 0 y 2 para elegir qué tipo de figura crear.
     let figura;
