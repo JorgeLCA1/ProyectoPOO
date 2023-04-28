@@ -8,7 +8,7 @@ function setup() {
     if (tipoFigura === 0) { // Si el número aleatorio es 0, crea un círculo
       figura = new Circulo(random(30, 60)); // Crea un círculo con radio aleatorio entre 15 y 30
     } else if (tipoFigura === 1) { // Si el número aleatorio es 1, crea un rectángulo
-      figura = new Rectangulo(random(30, 60), random(20, 40)); // Crea un rectángulo con ancho y alto aleatorios entre 15 y 30
+      figura = new Rectangulo(random(30, 60), random(30, 60)); // Crea un rectángulo con ancho y alto aleatorios entre 15 y 30
     } else { // Si el número aleatorio es 2, crea un triángulo
       figura = new Triangulo(random(30, 60)); // Crea un triángulo con radio aleatorio entre 15 y 30
     }
@@ -30,7 +30,7 @@ function mouseClicked() { // Se ejecuta cuando se presiona el mouse
     if (figuras[i].contienem(mouseX, mouseY)) {
        // Si el mouse está sobre la figura entonces:
        
-       figuras[i].y+= 70; // Incrementar la posición en y para que caiga
+       figuras[i].y+= 100; // Incrementar la posición en y para que caiga
       if (figuras[i].y > height) { // Si la figura sale de la pantalla
         figuras[i].pop(); // Imprime un mensaje en la consola (para saber qué figura se ha eliminado)
         figuras.splice(i, 1); // Elimina la figura de el arreglo
