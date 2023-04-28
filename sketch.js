@@ -25,7 +25,7 @@ function draw() {
     figuras[i].mover();
   }}
 
-function mousePressed() { // Se ejecuta cuando se presiona el mouse 
+function mouseOver() { // Se ejecuta cuando se presiona el mouse 
   for (let i = figuras.length - 1; i >= 0; i--) { // Recorre el arreglo de figuras de atrás hacia adelante
     if (figuras[i].contienem(mouseX, mouseY)) {
        // Si el mouse está sobre la figura entonces:
