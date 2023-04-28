@@ -30,7 +30,7 @@ function mouseClicked() { // Se ejecuta cuando se presiona el mouse
     if (figuras[i].contienem(mouseX, mouseY)) {
        // Si el mouse está sobre la figura entonces:
        figuras[i].y += 150; // Incrementar la posición en y para que caiga
-       
+       figuras[i].y+= 150; // Incrementar la posición en y para que caiga
       if (figuras[i].y > height) { // Si la figura sale de la pantalla
         figuras[i].pop(); // Imprime un mensaje en la consola (para saber qué figura se ha eliminado)
         figuras.splice(i, 1); // Elimina la figura de el arreglo
